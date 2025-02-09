@@ -18,9 +18,23 @@ for(item of btn){
     });
 }
 
+function clearScreen() 
+{
+    screen.value = '';
+}
+
+function calculate() 
+{
+    try {
+        screen.value = eval(screen.value);
+    } catch (error) {
+        screen.value = "Error";
+    }
+}
+
 function percent()
 {
-    screen.value*=100
+    screen.value = parseFloat(screen.value) / 100;
 }
 function sin()
 {
@@ -39,12 +53,12 @@ function tan()
 
 function pow()
 {
-    screen.value=Math.pow(screen.value,2);
+    screen.value=Math.pow(parseFloat(screen.value), 2);
 }
 
 function sqrt()
 {
-    screen.value=Math.sqrt(screen.value,2);
+    screen.value=Math.sqrt(parseFloat(screen.value));
 }
 
 function log()
@@ -54,7 +68,7 @@ function log()
 
 function pi()
 {
-    screen.value= 3.14159265359;
+    screen.value += Math.PI;
 }
 
 function e()
@@ -64,20 +78,19 @@ function e()
 
 function fact()
 {
-    var i, num, f;
-    f=1
-    num=screen.value;
-    for(i=1; i<=num; i++)
-    {
-        f=f*i;
+    let num = parseInt(screen.value);
+    if (num < 0) {
+        screen.value = "Error";
+        return;
     }
-
-    i=i-1;
-
-    screen.value=f;
+    let f = 1;
+    for (let i = 1; i <= num; i++) {
+        f *= i;
+    }
+    screen.value = f;
 }
 
 function backspc()
 {
-    screen.value=screen.value.substr(0,screen.value.length-1);
+    screen.value = screen.value.slice(0, -1);
 }
